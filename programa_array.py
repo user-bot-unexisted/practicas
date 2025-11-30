@@ -1,6 +1,6 @@
 import numpy as np
 
-# la matriz que vamos a usar
+# la matriz
 datos = np.array([
     [19, 5, 8, 15, 3, 23],
     [7, 23, 14, 2, 29, 9],
@@ -14,65 +14,65 @@ def mostrar_matriz():
     print()
 
 def suma_filas_columnas():
-    print("\n--- Suma de filas y columnas ---")
+    print("\nSuma de filas y columnas ")
     mostrar_matriz()
-    
-    # sumar filas
+
+# sumar filas
     filas = np.sum(datos, axis=1)
     print("Sumas por fila:")
     for idx, valor in enumerate(filas):
         print(f"  Fila {idx+1}: {valor}")
-    
-    # sumar columnas
+
+# sumar columnas
     cols = np.sum(datos, axis=0)
     print("\nSumas por columna:")
     for idx, valor in enumerate(cols):
         print(f"  Columna {idx+1}: {valor}")
 
 def intercambiar_columnas():
-    print("\n--- Intercambiar primera y última columna ---")
+    print("\n Intercambiar primera y última columna ")
     mostrar_matriz()
-    
+
     copia = datos.copy()
-    # cambiar primera por última
+# cambiar primera por última
     copia[:, [0, -1]] = copia[:, [-1, 0]]
-    
+
     print("Después del intercambio:")
     print(copia)
 
 def diagonal_principal():
-    print("\n--- Suma de la diagonal principal ---")
+    print("\n Suma de la diagonal principal ")
     mostrar_matriz()
-    
+
     resultado = np.trace(datos)
     print(f"La suma de la diagonal es: {resultado}")
 
 def reemplazar_elementos():
-    print("\n--- Reemplazar elementos menores que la suma de la primera fila ---")
+    print("\n Reemplazar elementos menores que la suma de la primera fila ")
     mostrar_matriz()
-    
+
     suma_primera = np.sum(datos[0])
     print(f"Suma de la primera fila: {suma_primera}")
-    
-    # reemplazar los que sean menores
+
+# reemplazar los que sean menores
     nueva = np.where(datos < suma_primera, suma_primera, datos)
-    
+
     print("\nMatriz después del reemplazo:")
     print(nueva)
 
 def filas_sin_ceros():
-    print("\n--- Suma de elementos en filas sin ceros ---")
+    print("\n Suma de elementos en filas sin ceros ")
     mostrar_matriz()
-    
-    # encontrar filas que no tengan ceros
+
+# encontrar filas que no tengan ceros
     indices = []
     for i in range(len(datos)):
         if 0 not in datos[i]:
             indices.append(i)
-    
+
     print(f"Filas sin ceros: {[x+1 for x in indices]}")
-    
-    # sumar solo los positivos de esas filas
+
+# sumar solo los positivos de esas filas
     total = 0
     for idx in indices:
         for num in datos[idx]:
@@ -85,7 +85,6 @@ def menu():
     while True:
         print("\n" + "="*50)
         print("MENÚ PRINCIPAL")
-        print("="*50)
         print("1. Ver matriz")
         print("2. Sumar filas y columnas")
         print("3. Intercambiar columnas")
@@ -93,12 +92,11 @@ def menu():
         print("5. Reemplazar elementos")
         print("6. Filas sin ceros")
         print("0. Salir")
-        print("="*50)
-        
-        opcion = input("\nElige una opción: ").strip()
-        
+
+        opcion = input("\nelige una opción: ").strip()
+
         if opcion == "0":
-            print("\n¡Hasta luego!")
+            print("\nbye")
             break
         elif opcion == "1":
             mostrar_matriz()
@@ -113,9 +111,9 @@ def menu():
         elif opcion == "6":
             filas_sin_ceros()
         else:
-            print("\nOpción no válida, intenta de nuevo")
+            print("\nOpción no válida")
         
-        input("\nPresiona Enter para continuar...")
+        input("\nPresiona Enter para continuar")
 
 if __name__ == "__main__":
     menu()
